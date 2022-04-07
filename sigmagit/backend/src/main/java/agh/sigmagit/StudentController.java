@@ -25,15 +25,20 @@ public class StudentController {
 
     @GetMapping("/student_login")
     public String studentLogin(@RequestParam(value = "code") String code,
-                           @RequestParam(value = "first_name") String firstName,
-                           @RequestParam(value = "last_name") String lastName) {
+                               @RequestParam(value = "index") Long index,
+                               @RequestParam(value = "name") String name) {
 
         if(code.equals(this.code)){
             Student student = new Student();
-            student.setFirstName(firstName);
-            student.setLastName(lastName);
+            student.setId(index);
+            student.setName(name);
             studentRepository.save(student);
-            return "Login successful, " + firstName + " " + lastName;
+
+            String repositoryName = "test_lab_" + student.getId();
+            if(GitController.generateRepository(repositoryName))
+                return "Login successful, repository name: " + repositoryName;
+            else
+                return "Error creating repository";
         }
         return "Wrong code";
     }

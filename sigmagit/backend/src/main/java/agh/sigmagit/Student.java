@@ -3,7 +3,7 @@ package agh.sigmagit;
 import javax.persistence.*;
 
 @Entity(name = "Student")
-@Table(name = "students")
+@Table(name = "Students")
 public class Student {
 
 
@@ -16,6 +16,7 @@ public class Student {
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }

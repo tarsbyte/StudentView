@@ -1,11 +1,14 @@
 package agh.sigmagit;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Objects;
 
 @Controller
@@ -18,7 +21,7 @@ public class StudentController {
     // Static for now
     String code = "ABCDEF";
 
-    @GetMapping("/student")
+    @GetMapping("/student_code")
     public String studentCode() {
         return code;
     }
@@ -34,6 +37,7 @@ public class StudentController {
             student.setName(name);
             studentRepository.save(student);
 
+
             String repositoryName = "test_lab_" + student.getId();
             if(GitController.createRepository(repositoryName))
                 return "Login successful, repository name: " + repositoryName;
@@ -41,5 +45,11 @@ public class StudentController {
                 return "Error creating repository";
         }
         return "Wrong code";
+    }
+
+    @GetMapping("/student_list")
+    public String studentList(){
+        List<Student> students = studentRepository.findAll();
+        return students.toString();
     }
 }

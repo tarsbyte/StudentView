@@ -1,5 +1,6 @@
 package agh.sigmagit;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,17 +33,20 @@ public class StudentController {
                                @RequestParam(value = "name") String name) {
 
         if(code.equals(this.code)){
+
+            String repositoryName = "test_lab_" + index;
+
+            if(!GitController.createRepository(repositoryName))
+                return "Error creating repository";
+
             Student student = new Student();
-            student.setId(index);
+            student.setIndex(index);
             student.setName(name);
+            student.setRepositoryName(repositoryName);
             studentRepository.save(student);
 
+            return "Login successful, repository name: " + repositoryName;
 
-            String repositoryName = "test_lab_" + student.getId();
-            if(GitController.createRepository(repositoryName))
-                return "Login successful, repository name: " + repositoryName;
-            else
-                return "Error creating repository";
         }
         return "Wrong code";
     }
@@ -50,6 +54,6 @@ public class StudentController {
     @GetMapping("/student_list")
     public String studentList(){
         List<Student> students = studentRepository.findAll();
-        return students.toString();
+        return new Gson().toJson(students);
     }
 }

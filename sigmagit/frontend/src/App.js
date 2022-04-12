@@ -1,12 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
-import StudentsList from "./components/StudentsList"
+import logo from "./logo.svg";
+import { Route, Navigate, Routes } from "react-router-dom";
+import StudentRegister from "./components/studentRegister";
+import StudentsList from "./components/StudentsList";
+import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <StudentsList/>
-    </div>
+    <main className="container">
+      <Routes>
+        <Route path="/register" element={<StudentRegister />} />
+        <Route path="/" element={<StudentsList />} />
+      </Routes>
+    </main>
   );
 }
 

@@ -35,7 +35,7 @@ public class StudentController {
             studentRepository.save(student);
 
             String repositoryName = "test_lab_" + student.getId();
-            if(GitController.generateRepository(repositoryName))
+            if(GitController.createRepository(repositoryName))
                 return "Login successful, repository name: " + repositoryName;
             else
                 return "Error creating repository";

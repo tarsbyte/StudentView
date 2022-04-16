@@ -1,0 +1,23 @@
+///////// Instalacja ///////
+
+1. Download
+https://dev.mysql.com/downloads/installer/
+
+2. Install
+Developer Default (Nie potrzebny VisualStudio gdyby pytał)
+-> all default
+hasło: sigma -> add user name: student hasło: sigma
+-> all default
+port: 3306
+
+//////// Towrzenie tabeli //////// 
+
+use Mysql;
+-- Drop Table students; -- if exists
+CREATE TABLE students (
+    ID int,
+    FullName varchar(255),
+    RepositoryName varchar(255)
+);
+-- Insert Into students Values (1, "Andrzej", "gitAndrzej");
+-- select * from students

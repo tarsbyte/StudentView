@@ -2,8 +2,8 @@ package agh.sigmagit;
 
 import javax.persistence.*;
 
-@Entity(name = "student")
-@Table(name = "students")
+@Entity(name = "Student")
+@Table(name = "Students")
 public class Student {
 
     @Id

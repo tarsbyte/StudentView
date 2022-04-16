@@ -13,11 +13,11 @@ port: 3306
 //////// Towrzenie tabeli //////// 
 
 use Mysql;
--- Drop Table students; -- if exists
-CREATE TABLE students (
+-- Drop Table Students; -- if exists
+CREATE TABLE Students (
     ID int,
     FullName varchar(255),
     RepositoryName varchar(255)
 );
--- Insert Into students Values (1, "Andrzej", "gitAndrzej");
--- select * from students
+-- Insert Into Students Values (1, "Andrzej", "gitAndrzej");
+-- select * from Students

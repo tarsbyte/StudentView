@@ -32,12 +32,17 @@ public class StudentController {
                                @RequestParam(value = "index") Long index,
                                @RequestParam(value = "name") String name) {
 
+        JsonObject response = new JsonObject();
+
         if(code.equals(this.code)){
 
             String repositoryName = "test_lab_" + index;
 
-            if(!GitController.createRepository(repositoryName))
-                return "Error creating repository";
+            if(!GitController.createRepository(repositoryName)){
+                response.addProperty("responseCode", "REPO_ERROR");
+                return response.toString();
+            }
+
 
             Student student = new Student();
             student.setIndex(index);
@@ -45,10 +50,14 @@ public class StudentController {
             student.setRepositoryName(repositoryName);
             studentRepository.save(student);
 
-            return "Login successful, repository name: " + repositoryName;
-
+            response.addProperty("responseCode", "OK");
+            response.addProperty("name", name);
+            response.addProperty("repositoryName", repositoryName);
+            return response.toString();
         }
-        return "Wrong code";
+
+        response.addProperty("responseCode", "CODE_ERROR");
+        return response.toString();
     }
 
     @GetMapping("/student_list")

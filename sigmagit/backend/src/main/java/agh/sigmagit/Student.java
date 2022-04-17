@@ -7,11 +7,11 @@ import javax.persistence.*;
 public class Student {
 
     @Id
-    @Column(name = "index", nullable = false)
+    @Column(name = "ID", nullable = false)
     private Long index;
-    @Column(name = "name", nullable = false)
+    @Column(name = "FullName", nullable = false)
     private String name;
-    @Column(name = "repositoryName", nullable = false)
+    @Column(name = "RepositoryName", nullable = false)
     private String repositoryName;
 
     public Long getIndex() {

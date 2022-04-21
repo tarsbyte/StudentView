@@ -1,6 +1,6 @@
 import React from "react";
 import Joi from "joi-browser";
-import Form from "./form";
+import Form from "./Form";
 
 class StudentRegister extends Form {
   state = {
@@ -22,11 +22,11 @@ class StudentRegister extends Form {
   render() {
     return (
       <div>
-        <h1>Rejestracja studenta</h1>
+        <h1>Student Registration</h1>
         <form onSubmit={this.handleSubmit}>
-          {this.renderInput("code", "Kod dostępu")}
-          {this.renderInput("index", "Indeks")}
-          {this.renderInput("fullname", "Imię i nazwisko")}
+          {this.renderInput("code", "Acces code")}
+          {this.renderInput("index", "Index")}
+          {this.renderInput("fullname", "Fullname")}
           {this.renderButton("Register")}
         </form>
       </div>

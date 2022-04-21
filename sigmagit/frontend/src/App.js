@@ -1,6 +1,6 @@
 import logo from "./logo.svg";
 import { Route, Navigate, Routes } from "react-router-dom";
-import StudentRegister from "./components/studentRegister";
+import StudentRegister from "./components/StudentRegister";
 import StudentsList from "./components/StudentsList";
 import "./App.css";
 

@@ -29,29 +29,28 @@ public class StudentController {
 
     @GetMapping("/student_login")
     public String studentLogin(@RequestParam(value = "code") String code,
-                               @RequestParam(value = "index") Long index,
-                               @RequestParam(value = "name") String name) {
+                               @RequestParam(value = "studentName") String studentName,
+                               @RequestParam(value = "githubName") String githubName) {
 
         JsonObject response = new JsonObject();
 
         if(code.equals(this.code)){
 
-            String repositoryName = "test_lab_" + index;
+            String repositoryName = "test_lab_" + githubName;
 
             if(!GitController.createRepository(repositoryName)){
                 response.addProperty("responseCode", "REPO_ERROR");
                 return response.toString();
             }
 
-
             Student student = new Student();
-            student.setIndex(index);
-            student.setName(name);
+            student.setGithubName(githubName);
+            student.setStudentName(studentName);
             student.setRepositoryName(repositoryName);
             studentRepository.save(student);
 
             response.addProperty("responseCode", "OK");
-            response.addProperty("name", name);
+            response.addProperty("studentName", studentName);
             response.addProperty("repositoryName", repositoryName);
             return response.toString();
         }

@@ -7,27 +7,27 @@ import javax.persistence.*;
 public class Student {
 
     @Id
-    @Column(name = "ID", nullable = false)
-    private Long index;
-    @Column(name = "FullName", nullable = false)
-    private String name;
+    @Column(name = "GithubName", nullable = false)
+    private String githubName;
+    @Column(name = "StudentName", nullable = false)
+    private String studentName;
     @Column(name = "RepositoryName", nullable = false)
     private String repositoryName;
 
-    public Long getIndex() {
-        return index;
+    public String getGithubName() {
+        return githubName;
     }
 
-    public void setIndex(Long index) {
-        this.index = index;
+    public void setGithubName(String githubName) {
+        this.githubName = githubName;
     }
 
-    public String getName() {
-        return name;
+    public String getStudentName() {
+        return studentName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setStudentName(String studentName) {
+        this.studentName = studentName;
     }
 
     public String getRepositoryName() {

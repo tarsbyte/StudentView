@@ -9,12 +9,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 
 @Controller
 @RestController
 public class StudentController {
+
+    public StudentController(){
+        new GitController();
+    }
 
     @Autowired
     private StudentRepository studentRepository;
@@ -36,8 +41,14 @@ public class StudentController {
 
             String repositoryName = "test_lab_" + index;
 
-            if(!GitController.createRepository(repositoryName))
-                return "Error creating repository";
+            try {
+                if(!GitController.createRepository(repositoryName))
+                    return "Error creating repository";
+                //else
+                    //GitController.addCollaborator(githubname)
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
             Student student = new Student();
             student.setIndex(index);

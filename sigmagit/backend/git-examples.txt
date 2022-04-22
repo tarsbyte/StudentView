@@ -1,0 +1,12 @@
+new GitController();
+
+System.out.println(GitController.createRepository("blog3")); // default, private repository == false
+System.out.println(GitController.addCollaborator("blog3", "StudentGit3"));
+
+System.out.println(GitController.getFileContent("blog3", "test.txt") + "\n");        // default github raw link (optional: raw base64 content)
+System.out.println(GitController.getFileContent("blog", "pobrane.jpg") + "\n");
+System.out.println(GitController.getFileContent("blog", "R%20Magics.ipynb") + "\n"); // space = %20 , Please do not use space in file name
+
+System.out.println(GitController.addFile("blog2", "old_code"));
+System.out.println(GitController.updateFile("blog2", "old_code"));
+System.out.println(GitController.deleteFile("blog2", "old_code"));
